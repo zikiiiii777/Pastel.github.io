@@ -1,0 +1,62 @@
+import HeroSection from "@/components/HeroSection";
+import StatCard from "@/components/StatCard";
+import TraitBadge from "@/components/TraitBadge";
+import FavoriteThings from "@/components/FavoriteThings";
+import pawIcon from "@/assets/paw-icon.png";
+import { motion } from "framer-motion";
+
+const stats = [
+  { label: "Walks per day", value: "3", emoji: "🦮" },
+  { label: "Treats today", value: "8", emoji: "🦴" },
+  { label: "Naps taken", value: "7", emoji: "💤" },
+  { label: "Toys destroyed", value: "∞", emoji: "🧸" },
+];
+
+const traits = [
+  "Sweet", "Curious", "Sassy", "Cuddly", "Food-motivated",
+  "Playful", "Stubborn", "Photogenic", "Dramatic",
+];
+
+const Index = () => (
+  <div className="min-h-screen bg-background">
+    <HeroSection />
+
+    {/* Stats */}
+    <section className="py-16 px-8 md:px-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {stats.map((s, i) => (
+          <StatCard key={s.label} {...s} delay={i * 0.1} />
+        ))}
+      </div>
+    </section>
+
+    {/* Personality */}
+    <section className="py-8 px-8 md:px-16 max-w-4xl mx-auto">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6"
+      >
+        Personality Traits
+      </motion.h2>
+      <div className="flex flex-wrap gap-3">
+        {traits.map((t, i) => (
+          <TraitBadge key={t} trait={t} delay={i * 0.05} />
+        ))}
+      </div>
+    </section>
+
+    <FavoriteThings />
+
+    {/* Footer */}
+    <footer className="py-12 px-8 text-center">
+      <img src={pawIcon} alt="Paw print" className="w-8 h-8 mx-auto mb-3 opacity-50" />
+      <p className="text-sm font-body text-muted-foreground">
+        Made with ❤️ for 元旦 (Pastel de Nata)
+      </p>
+    </footer>
+  </div>
+);
+
+export default Index;
